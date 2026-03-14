@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://bpoguw8lpx0vg"]
+
+[ext_resource type="Texture2D" uid="uid://bu58we7wdqfg1" path="res://Assets/dinoCharactersVersion1/sheets/BulletBill.png" id="1_dy6sc"]
+[ext_resource type="Script" uid="uid://bjow6ldq5q2e3" path="res://mob.gd" id="1_nokgg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nokgg"]
+atlas = ExtResource("1_dy6sc")
+region = Rect2(0, 0, 820, 465)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ubaqv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nokgg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p11y5"]
+size = Vector2(142.8082, 16.902859)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s5nov"]
+radius = 63.0
+height = 160.0
+
+[node name="Mob" type="CharacterBody2D" unique_id=1587564964]
+scale = Vector2(0.9992977, 0.9978028)
+script = ExtResource("1_nokgg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=695534281]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D" unique_id=751487084]
+position = Vector2(1, 0)
+scale = Vector2(0.10731184, 0.10731183)
+sprite_frames = SubResource("SpriteFrames_ubaqv")
+
+[node name="Upper_Hitbox" type="Area2D" parent="." unique_id=2026748214]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Upper_Hitbox" unique_id=1604767228]
+position = Vector2(6.6507196, -15.534132)
+scale = Vector2(0.37186223, 0.6200561)
+shape = SubResource("RectangleShape2D_p11y5")
+one_way_collision_margin = 0.0
+debug_color = Color(0.5853734, 0, 0.15399587, 0.41960785)
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=720997591]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=245484919]
+position = Vector2(5.0035133, 4.008808)
+rotation = 3.1415925
+scale = Vector2(0.38388178, 1.2185721)
+shape = SubResource("RectangleShape2D_p11y5")
+one_way_collision_margin = 0.0
+debug_color = Color(0.0669339, 0, 0.9114438, 0.41960785)
+
+[node name="Solid" type="CollisionShape2D" parent="." unique_id=1030319387]
+position = Vector2(7.004919, -1.002202)
+rotation = 1.5707964
+scale = Vector2(0.31849924, 0.31849924)
+shape = SubResource("CapsuleShape2D_s5nov")

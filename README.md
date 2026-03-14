@@ -1,7 +1,5 @@
 This project is for STEAM Ease 3
-Class : 11 MIT
+Class : 11 OXF
 The members are :
-Akhtar 
-Altaf
-Erkam
-Fathan
+Dipta
+Rafie

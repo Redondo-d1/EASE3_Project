@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="EASE3"
+config/name="RafieDipta_Godot"
 run/main_scene="uid://bkwrxoh7482nc"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
