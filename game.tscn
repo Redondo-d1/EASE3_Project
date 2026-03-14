@@ -292,9 +292,9 @@ size = Vector2(1522, 20)
 
 [sub_resource type="Curve2D" id="Curve2D_eow3j"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -316, -117, 0, 0, 0, 0, -318, 11)
+"points": PackedVector2Array(0, 0, 0, 0, -315, -106, 0, 0, 0, 0, -314, -45, 0, 0, 0, 0, -318, 11)
 }
-point_count = 2
+point_count = 3
 
 [node name="Game" type="Node" unique_id=1363845828]
 script = ExtResource("1_ryrav")
@@ -334,21 +334,27 @@ position = Vector2(97, 189)
 shape = SubResource("RectangleShape2D_7jktm")
 
 [node name="Left" type="Path2D" parent="." unique_id=2013268946]
+position = Vector2(-1, -28)
 curve = SubResource("Curve2D_eow3j")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Left" unique_id=423373406]
-position = Vector2(-316.95618, -55.803364)
-rotation = 1.58642
+position = Vector2(-314.00653, -44.798138)
+rotation = 1.5615324
 progress = 61.20427
 
 [node name="Right" type="Path2D" parent="." unique_id=282909455]
-position = Vector2(616, -5)
+position = Vector2(712, -25)
 curve = SubResource("Curve2D_eow3j")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Right" unique_id=2125629910]
-position = Vector2(-316.95618, -55.803364)
-rotation = 1.58642
+position = Vector2(-314.00653, -44.798138)
+rotation = 1.5615324
 progress = 61.20427
+
+[node name="Timer" type="Timer" parent="." unique_id=247658466]
+wait_time = 2.0
+autostart = true
 
 [connection signal="body_entered" from="Killzone" to="Player" method="_on_killzone_body_entered"]
 [connection signal="body_entered" from="Killzone" to="Killzone" method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

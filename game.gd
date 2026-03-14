@@ -8,15 +8,21 @@ var Direction
 func spawn_mob():
 	var Mob = preload("res://mob.tscn").instantiate()
 	Direction = randf()
+	print(Direction)
 	if Direction > 0.5:
 		#Left
 		Left_Spawn.progress_ratio = randf()
 		Mob.global_position = Left_Spawn.global_position
-		Mob.get_node("Sprite2D").flip_h = true
+		Mob.get_node("Sprite2D").get_node("AnimatedSprite2D").flip_h = true
 		add_child(Mob)
 	else: 
-		Right_Spawn.progress_ration = randf()
+		Right_Spawn.progress_ratio = randf()
 		Mob.global_position = Right_Spawn.global_position
 		add_child(Mob)
 
+
 	
+
+
+func _on_timer_timeout() -> void:
+	spawn_mob()

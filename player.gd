@@ -6,15 +6,21 @@ extends CharacterBody2D
 @export var UP_GRAVITY: int = 1000
 @export var DOWN_GRAVITY: int = 1200
 @export var JUMP_POWER: int = 500
+@export var JUMP: int = 2
 
 @onready var sprite = $Sprite2D/AnimatedSprite2D
+
+var health = 3
+var invincibility: bool = false
+
+signal player_death
 
 var stopvar: bool = false
 var direction: Vector2
 var speed: float = 0
 var acceleration: float = 0
 
-var Jump = 2
+
 
 func stop():
 	stopvar = true
@@ -28,8 +34,22 @@ func stop():
 func respawn():
 	stop()
 	sprite.play("got_Hit")
+	health = 3
 	
 	self.global_position = Vector2(-170,-2)
+
+func get_hit():
+	invincibility = false
+	if !invincibility:
+		health -= 1
+		print("Player got hit!")
+		if health <= 0:
+			respawn()
+			player_death.emit()
+			return
+			
+		await get_tree().create_timer(2.0).timeout
+	invincibility = true
 
 func _process(delta: float) -> void:
 	direction = Vector2.ZERO
@@ -37,7 +57,7 @@ func _process(delta: float) -> void:
 	if is_on_floor():
 		velocity.y = 0
 		direction.y = 0
-		Jump = 2
+		JUMP = 2
 	elif stopvar:
 		return
 	elif velocity.y < 0:
@@ -66,10 +86,10 @@ func _process(delta: float) -> void:
 			velocity.x = 0
 	
 		
-	if Input.is_action_just_pressed("ui_up") and Jump > 0:
+	if Input.is_action_just_pressed("ui_up") and JUMP > 0:
 		velocity.y = 0
 		velocity.y -= JUMP_POWER
-		Jump -= 1
+		JUMP -= 1
 	
 	if speed > 0:
 		velocity.x = min(speed, MAX_SPEED)
@@ -84,11 +104,11 @@ func _process(delta: float) -> void:
 		sprite.flip_h = false
 	
 	if velocity.y > 0:
-		sprite.play("jump_down")
+		sprite.play("JUMP_down")
 	elif velocity.y == 0 and (speed > 0.1 or speed < -0.1):
 		sprite.play("walk")
 	elif velocity.y < 0:
-		sprite.play("jump_up")
+		sprite.play("JUMP_up")
 	else:
 		sprite.play("Idle")
 		
