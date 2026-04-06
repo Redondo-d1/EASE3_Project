@@ -10,7 +10,7 @@ extends CharacterBody2D
 
 @onready var sprite = $Sprite2D/AnimatedSprite2D
 
-var health = 3
+var health = 1
 var invincibility: bool = false
 
 signal player_death
@@ -34,7 +34,7 @@ func stop():
 func respawn():
 	stop()
 	sprite.play("got_Hit")
-	health = 3
+	health = 1
 	
 	self.global_position = Vector2(-170,-2)
 

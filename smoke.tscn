@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://dk4fsmwdmo20h"]
+
+[ext_resource type="Texture2D" uid="uid://ddvplnqau1xom" path="res://Assets/dinoCharactersVersion1/sheets/Cloud_Pixel.png" id="1_niign"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vxas0"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 2
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_7rj46"]
+_data = [Vector2(0, 0.8209983), 0.0, 0.0, 0, 0, Vector2(0.64429533, 0.10872054), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_q7epf"]
+curve = SubResource("Curve_7rj46")
+
+[sub_resource type="Curve" id="Curve_q7epf"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vxas0"]
+curve = SubResource("Curve_q7epf")
+
+[sub_resource type="Curve" id="Curve_j4sxf"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0.98565686), 0.0, 0.0, 0, 0, Vector2(0.39597315, 0.76936305), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_m5xho"]
+curve = SubResource("Curve_j4sxf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kmxf7"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(10, 0, 0)
+emission_shape_scale = Vector3(1, 0.8, 1)
+emission_shape = 1
+emission_sphere_radius = 22.5
+angle_min = -99.99999
+angle_max = 100.000015
+inherit_velocity_ratio = -0.28
+velocity_pivot = Vector3(1, 0, 0)
+direction = Vector3(10, 0, 0)
+spread = 0.33
+flatness = 0.53
+initial_velocity_min = 150.0
+initial_velocity_max = 200.0
+angular_velocity_min = -100.000015
+angular_velocity_max = 99.999985
+radial_velocity_min = -20.000021
+radial_velocity_max = -10.000022
+gravity = Vector3(0, 0, 0)
+linear_accel_curve = SubResource("CurveTexture_vxas0")
+scale_max = 1.1999999
+scale_curve = SubResource("CurveTexture_m5xho")
+alpha_curve = SubResource("CurveTexture_q7epf")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = -2.2351742e-08
+anim_speed_min = 8.0
+anim_speed_max = 10.0
+
+[node name="Smoke" type="Node2D" unique_id=1549065785]
+z_index = -1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=951746171]
+material = SubResource("CanvasItemMaterial_vxas0")
+position = Vector2(-1, 0)
+amount = 80
+texture = ExtResource("1_niign")
+lifetime = 2.0
+explosiveness = 0.1
+use_fixed_seed = true
+seed = 123123
+collision_base_size = 0.0
+process_material = SubResource("ParticleProcessMaterial_kmxf7")

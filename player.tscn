@@ -1,11 +1,17 @@
 [gd_scene format=3 uid="uid://buk542xm4hsxt"]
 
 [ext_resource type="Script" uid="uid://dbw80pl407l0m" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Shader" uid="uid://b7owav4e2l1im" path="res://Blink.gdshader" id="2_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://blan87lxed4r0" path="res://Assets/dinoCharactersVersion1/sheets/Hedgehog Sprite Sheet-2.png" id="2_onrkg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 radius = 6.0
 height = 16.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hqtel"]
+shader = ExtResource("2_i3pqv")
+shader_parameter/blink_color = Color(1, 1, 1, 1)
+shader_parameter/blink_intensity = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
 atlas = ExtResource("2_onrkg")
@@ -122,6 +128,7 @@ shape = SubResource("CapsuleShape2D_onrkg")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1575270306]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D" unique_id=1318957785]
+material = SubResource("ShaderMaterial_hqtel")
 position = Vector2(2, -6)
 sprite_frames = SubResource("SpriteFrames_2hs0m")
 animation = &"jump_up"
